@@ -45,7 +45,7 @@ aexp = a[30:23];  bexp = b[30:23];
 //de-normalize b so that aexp == bexp.
 
 shift = aexp - bexp;
-bsig = bsig >> diff;
+bsig = bsig >> shift;
 
  //negate the significands.
  if ( aneg ) asig = -asig;
@@ -58,15 +58,8 @@ bsig = bsig >> diff;
  sumneg = sumsig[23];
  if ( sumneg ) sumsig = -sumsig;
  
- bsig = bsig >> shift;
+//normalization
 
- //negate significands.
- if ( aneg ) asig = -asig;
- if ( bneg ) bsig = -bsig;
-
- //Sum computation
- sumsig = asig + bsig;
- 
  
  
  endmodule
