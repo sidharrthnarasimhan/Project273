@@ -55,12 +55,50 @@ bsig = bsig >> shift;
  sumsig = asig + bsig;
  
  //Take absolute value of sum.
- sumneg = sumsig[23];
+ sumneg = sumsig[22];
  if ( sumneg ) sumsig = -sumsig;
  
 //normalization
+if(sumsig[21]) begin
+ //Sum overflow.
+      sumexp = aexp + 1;
+      sumsig = sumsig >> 1;
 
- 
- 
+      end else if ( sumsig ) begin
+      //not a overflow.
+	  integer pos, val, i;
+
+// Find position of first non-zero digit.
+       pos = 0;
+       for (i = 23; i >= 0; i = i - 1 ) 
+	   if ( !pos && sumsig[i] ) pos = i;
+ // Compute amount to shift significand and reduce exponent.
+           val = 23 - pos;
+           if ( aexp < adj ) begin
+ //  Exponent too small, floating point underflow, set to zero.
+
+            sumexp = 0;
+            sumsig = 0;
+            sumneg = 0;
+
+           end else begin
+              
+              // Adjust significand and exponent.
+
+              sumexp = aexp - val;
+              sumsig = sumsig << val;
+
+           end
+
+        end else begin
+           
+           // Sum is zero.
+
+           sumexp = 0;
+           sumsig = 0;
+
+        end
+		end 
+
  endmodule
  
