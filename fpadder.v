@@ -2,7 +2,6 @@ module fpalu_add(a_input.b_inout,sum)
 input[31:0]a_input,b_input;module fpalu_add(a_input.b_inout,sum)
 input[31:0]a_input,b_input;
 output[31:0]sum;
-<<<<<<< HEAD
 
 reg sumneg;//the sign bit is represented as neg
 reg[7:0] sumexp;//the exponent bit is represented as exp
