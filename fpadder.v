@@ -60,12 +60,14 @@ bsig = bsig >> diff;
  
  bsig = bsig >> shift;
 
- // Step 4: If necessary, negate significands.
+ //negate significands.
  if ( aneg ) asig = -asig;
  if ( bneg ) bsig = -bsig;
 
- /// Step 5: Compute sum.
+ //Sum computation
  sumsig = asig + bsig;
+ 
+ 
  
  endmodule
  
