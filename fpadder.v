@@ -1,5 +1,4 @@
-module fpalu_add(a_input.b_inout,sum)
-input[31:0]a_input,b_input;module fpalu_add(a_input.b_inout,sum)
+module fpalu_add(a_input.b_input,sum);
 input[31:0]a_input,b_input;
 output[31:0]sum;
 
@@ -21,7 +20,8 @@ reg aneg,bneg;
 reg[7:0] shift;
 
 //Compare exponents and swap the values for computation
-always @(*)
+always @(*) 
+begin
 //Compare exponents
  if ( a_input[30:23] < b_input[30:23] ) 
  begin
@@ -29,7 +29,6 @@ always @(*)
  end else begin
  a = a_input;  b = b_input;
  end
- 
 //split the value of a,b into sign(neg), exponent(exp), and significand(sig).
 
 //aneg = signbit of a, bneg = signbit of b
@@ -69,18 +68,19 @@ if(sumsig[21]) begin
 
 // Find position of first non-zero digit.
        pos = 0;
-       for (i = 23; i >= 0; i = i - 1 ) 
-	   if ( !pos && sumsig[i] ) pos = i;
+       for (i = 23; i >= 0; i = i - 1 ) if ( !pos && sumsig[i] ) pos = i;
  // Compute amount to shift significand and reduce exponent.
            val = 23 - pos;
-           if ( aexp < adj ) begin
+           if ( aexp < adj ) 
+		   begin
  //  Exponent too small, floating point underflow, set to zero.
 
             sumexp = 0;
             sumsig = 0;
             sumneg = 0;
 
-           end else begin
+           end else 
+		   begin
               
               // Adjust significand and exponent.
 
@@ -89,7 +89,8 @@ if(sumsig[21]) begin
 
            end
 
-        end else begin
+        end else 
+		begin
            
            // Sum is zero.
 
@@ -98,6 +99,7 @@ if(sumsig[21]) begin
 
         end
 		end 
+		end
 
  endmodule
  
