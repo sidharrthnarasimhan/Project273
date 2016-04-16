@@ -1,4 +1,4 @@
-module fpalu_add(a_input.b_input,sum);
+module fpalu_add(a_input,b_input,sum);
 input[31:0]a_input,b_input;
 output[31:0]sum;
 
@@ -20,19 +20,21 @@ reg aneg,bneg;
 reg[7:0] shift;
 
 //Compare exponents and swap the values for computation
-always @(*) 
-begin
+ always @(*) 
+ begin
 //Compare exponents
  if ( a_input[30:23] < b_input[30:23] ) 
  begin
  a = b_input;  b = a_input;
- end else begin
+ end 
+ else 
+ begin
  a = a_input;  b = b_input;
  end
 //split the value of a,b into sign(neg), exponent(exp), and significand(sig).
 
 //aneg = signbit of a, bneg = signbit of b
-aneg = a[31];     bneg = b[31];
+  aneg = a[31];     bneg = b[31];
 
 //aexp is exponent part of a, bexp is exponent part of b
 aexp = a[30:23];  bexp = b[30:23];
@@ -57,22 +59,25 @@ bsig = bsig >> shift;
  if ( sumneg ) sumsig = -sumsig;
  
 //normalization
-if(sumsig[21]) begin
+if(sumsig[21]) 
+  begin
  //Sum overflow.
       sumexp = aexp + 1;
       sumsig = sumsig >> 1;
 
-      end else if ( sumsig ) begin
+      end else if ( sumsig ) 
+  begin
       //not a overflow.
 	  integer pos, val, i;
 
 // Find position of first non-zero digit.
        pos = 0;
-       for (i = 23; i >= 0; i = i - 1 ) if ( !pos && sumsig[i] ) pos = i;
+       for (i = 23; i >= 0; i = i - 1 ) 
+	   if ( !pos && sumsig[i] ) pos = i;
  // Compute amount to shift significand and reduce exponent.
            val = 23 - pos;
-           if ( aexp < adj ) 
-		   begin
+    if ( aexp < val ) 
+   begin
  //  Exponent too small, floating point underflow, set to zero.
 
             sumexp = 0;
@@ -80,26 +85,25 @@ if(sumsig[21]) begin
             sumneg = 0;
 
            end else 
-		   begin
+   begin
               
               // Adjust significand and exponent.
 
               sumexp = aexp - val;
               sumsig = sumsig << val;
 
-           end
+    end
 
-        end else 
-		begin
+    end else 
+    begin
            
            // Sum is zero.
 
            sumexp = 0;
            sumsig = 0;
 
-        end
-		end 
-		end
+     end
+end 
 
- endmodule
+endmodule
  
