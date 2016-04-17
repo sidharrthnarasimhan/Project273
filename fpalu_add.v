@@ -1,3 +1,5 @@
+//module for floating point addition logic
+//independent module 
 module fpalu_add(a_input,b_input,sum);
 input[31:0]a_input,b_input;
 output[31:0]sum;
