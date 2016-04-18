@@ -55,7 +55,7 @@ bsig = bsig >> shift;
  assign sum[31] = sumneg;
  assign sum[30:23] = sumexp;
  assign sum[22:0] = sumsig; 
- 
+ //assign sum = {sumneg,sumexp,sumsig}
  
  //Take absolute value of sum.
  sumneg = sumsig[22];
