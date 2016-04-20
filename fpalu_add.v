@@ -50,12 +50,13 @@ bsig = bsig >> shift;
 
  //Sum calculation
  sumsig = asig + bsig;
+ assign sum = {sumneg,sumexp,sumsig}
  
  //the output format assign statements
  assign sum[31] = sumneg;
  assign sum[30:23] = sumexp;
  assign sum[22:0] = sumsig; 
- //assign sum = {sumneg,sumexp,sumsig}
+ 
  
  //Take absolute value of sum.
  sumneg = sumsig[22];
