@@ -1,3 +1,5 @@
+//module for floating point addition logic
+//independent module 
 module fpalu_add(a_input,b_input,sum);
 input[31:0]a_input,b_input;
 output[31:0]sum;
@@ -6,11 +8,6 @@ reg sumneg;//the sign bit is represented as neg
 reg[7:0] sumexp;//the exponent bit is represented as exp
 reg[22:0] sumsig;//the significand or mantissa or fraction part is represented as sig
 reg[31:0]sum;
-
-//the output format assign statements
-assign sum[31] = sumneg;
-assign sum[30:23] = sumexp;
-assign sum[22:0] = sumsig; 
 
 //for internal computations
 reg[31:0]a,b;
@@ -53,6 +50,13 @@ bsig = bsig >> shift;
 
  //Sum calculation
  sumsig = asig + bsig;
+ assign sum = {sumneg,sumexp,sumsig}
+ 
+ //the output format assign statements
+ assign sum[31] = sumneg;
+ assign sum[30:23] = sumexp;
+ assign sum[22:0] = sumsig; 
+ 
  
  //Take absolute value of sum.
  sumneg = sumsig[22];
