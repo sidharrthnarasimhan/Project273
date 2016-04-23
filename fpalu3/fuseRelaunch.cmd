@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "T:/New folder/fpalu3/addertb_isim_beh.exe" -prj "T:/New folder/fpalu3/addertb_beh.prj" "work.addertb" "work.glbl" 

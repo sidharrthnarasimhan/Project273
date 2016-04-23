@@ -1,9 +1,9 @@
 //module for floating point addition logic
 //independent module 
-module fpalu_add(a_input,b_input,sum);
+module fpalu_add(a_input,b_input,clock,reset_n,sum);
 input[31:0]a_input,b_input;
 output[31:0]sum;
-
+input clock,reset;
 reg sumneg;//the sign bit is represented as neg
 reg[7:0] sumexp;//the exponent bit is represented as exp
 reg[22:0] sumsig;//the significand or mantissa or fraction part is represented as sig
@@ -11,11 +11,21 @@ reg[31:0]sum;
 
 //for internal computations
 reg[31:0]a,b;
-reg[22:0]asig,bsig;
+reg[25:0]asig,bsig;
 reg[7:0]aexp,bexp;
 reg aneg,bneg;
 reg[7:0] shift;
-
+always @(posedge clock or negedge reset_n)
+begin
+if(!reset_n)
+begin
+a_input = 0;
+b_input = 0;
+sum = 0;
+end
+else
+sum = a_input+b_input;
+end 
 //Compare exponents and swap the values for computation
  always @(*) 
  begin

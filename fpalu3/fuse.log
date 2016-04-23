@@ -1,0 +1,30 @@
+Running: C:\Xilinx\14.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o T:/New folder/fpalu3/addertb_isim_beh.exe -prj T:/New folder/fpalu3/addertb_beh.prj work.addertb work.glbl 
+ISim P.49d (signature 0x7708f090)
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Determining compilation order of HDL files
+Analyzing Verilog file "T:/New folder/fpalu3/normalized.v" into library work
+Analyzing Verilog file "T:/New folder/fpalu3/faddsub.v" into library work
+Analyzing Verilog file "T:/New folder/fpalu3/cmpshift.v" into library work
+Analyzing Verilog file "T:/New folder/fpalu3/buffer2.v" into library work
+Analyzing Verilog file "T:/New folder/fpalu3/buffer1.v" into library work
+Analyzing Verilog file "T:/New folder/fpalu3/fpadd.v" into library work
+Analyzing Verilog file "T:/New folder/fpalu3/addertb.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.4/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:189 - "T:/New folder/fpalu3/fpadd.v" Line 21: Size mismatch in connection of port <ex2>. Formal port size is 24-bit while actual signal size is 8-bit.
+Completed static elaboration
+Compiling module cmpshift
+Compiling module buffer1
+Compiling module faddsub
+Compiling module buffer2
+Compiling module normalized
+Compiling module fpadd
+Compiling module addertb
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 8 Verilog Units
+Built simulation executable T:/New folder/fpalu3/addertb_isim_beh.exe
+Fuse Memory Usage: 28544 KB
+Fuse CPU Usage: 888 ms

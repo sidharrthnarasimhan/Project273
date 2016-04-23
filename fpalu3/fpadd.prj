@@ -1,0 +1,6 @@
+verilog work "normalized.v"
+verilog work "faddsub.v"
+verilog work "cmpshift.v"
+verilog work "buffer2.v"
+verilog work "buffer1.v"
+verilog work "fpadd.v"

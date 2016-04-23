@@ -1,0 +1,15 @@
+ISim log file
+Running: T:\New folder\fpalu3\addertb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb T:/New folder/fpalu3/addertb_isim_beh.wdb 
+ISim P.49d (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+WARNING: File "T:/New folder/fpalu3/fpadd.v" Line 5.  For instance uut/add/, width 24 of formal port ex2 is not equal to width 8 of actual signal ex2.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+Stopped at time : 120 ns : File "T:/New folder/fpalu3/addertb.v" Line 55

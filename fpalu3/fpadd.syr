@@ -1,0 +1,672 @@
+Release 14.4 - xst P.49d (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.17 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.17 secs
+ 
+--> Reading design: fpadd.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "fpadd.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "fpadd"
+Output Format                      : NGC
+Target Device                      : xc3s500e-5-fg320
+
+---- Source Options
+Top Module Name                    : fpadd
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "normalized.v" in library work
+Compiling verilog file "faddsub.v" in library work
+Module <normalized> compiled
+Compiling verilog file "cmpshift.v" in library work
+Module <faddsub> compiled
+Compiling verilog file "buffer2.v" in library work
+Module <cmpshift> compiled
+Compiling verilog file "buffer1.v" in library work
+Module <buffer2> compiled
+Compiling verilog file "fpadd.v" in library work
+Module <buffer1> compiled
+Module <fpadd> compiled
+No errors in compilation
+Analysis of file <"fpadd.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <fpadd> in library <work>.
+
+Analyzing hierarchy for module <cmpshift> in library <work>.
+
+Analyzing hierarchy for module <buffer1> in library <work>.
+
+Analyzing hierarchy for module <faddsub> in library <work>.
+
+Analyzing hierarchy for module <buffer2> in library <work>.
+
+Analyzing hierarchy for module <normalized> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <fpadd>.
+Module <fpadd> is correct for synthesis.
+ 
+Analyzing module <cmpshift> in library <work>.
+Module <cmpshift> is correct for synthesis.
+ 
+Analyzing module <buffer1> in library <work>.
+"buffer1.v" line 10: $display : buffer mod
+Module <buffer1> is correct for synthesis.
+ 
+Analyzing module <faddsub> in library <work>.
+Module <faddsub> is correct for synthesis.
+ 
+Analyzing module <buffer2> in library <work>.
+Module <buffer2> is correct for synthesis.
+ 
+Analyzing module <normalized> in library <work>.
+Module <normalized> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <cmpshift>.
+    Related source file is "cmpshift.v".
+WARNING:Xst:646 - Signal <diff> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 8-bit register for signal <ex>.
+    Found 8-bit register for signal <ey>.
+    Found 1-bit register for signal <sx1>.
+    Found 1-bit register for signal <sy1>.
+    Found 1-bit register for signal <s>.
+    Found 24-bit register for signal <mx>.
+    Found 24-bit register for signal <my>.
+    Found 8-bit adder for signal <ex$addsub0000> created at line 15.
+    Found 8-bit comparator equal for signal <ex$cmp_eq0000> created at line 13.
+    Found 8-bit comparator greater for signal <ex$cmp_gt0000> created at line 21.
+    Found 8-bit adder for signal <ey$addsub0000> created at line 16.
+    Found 24-bit shifter logical right for signal <my$shift0002> created at line 27.
+    Found 24-bit shifter logical right for signal <my$shift0003> created at line 36.
+    Summary:
+	inferred  67 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+	inferred   2 Combinational logic shifter(s).
+Unit <cmpshift> synthesized.
+
+
+Synthesizing Unit <buffer1>.
+    Related source file is "buffer1.v".
+    Found 1-bit register for signal <sn1>.
+    Found 1-bit register for signal <sn2>.
+    Found 8-bit register for signal <ex1>.
+    Found 8-bit register for signal <ey1>.
+    Found 24-bit register for signal <mx1>.
+    Found 24-bit register for signal <my1>.
+    Found 1-bit register for signal <sn>.
+    Summary:
+	inferred  67 D-type flip-flop(s).
+Unit <buffer1> synthesized.
+
+
+Synthesizing Unit <faddsub>.
+    Related source file is "faddsub.v".
+    Found 1-bit register for signal <sn3>.
+    Found 1-bit register for signal <sn4>.
+    Found 1-bit register for signal <sr1>.
+    Found 1-bit register for signal <s>.
+    Found 24-bit register for signal <ex2>.
+    Found 25-bit register for signal <out>.
+    Found 24-bit adder carry out for signal <out$addsub0000> created at line 17.
+    Summary:
+	inferred  53 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <faddsub> synthesized.
+
+
+Synthesizing Unit <buffer2>.
+    Related source file is "buffer2.v".
+    Found 1-bit register for signal <sn5>.
+    Found 1-bit register for signal <sn6>.
+    Found 1-bit register for signal <sr2>.
+    Found 1-bit register for signal <s4>.
+    Found 8-bit register for signal <ex3>.
+    Found 25-bit register for signal <mxy2>.
+    Summary:
+	inferred  37 D-type flip-flop(s).
+Unit <buffer2> synthesized.
+
+
+Synthesizing Unit <normalized>.
+    Related source file is "normalized.v".
+WARNING:Xst:646 - Signal <mxy2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <sr>.
+    Found 8-bit register for signal <exy>.
+    Found 24-bit register for signal <mxy>.
+    Found 8-bit subtractor for signal <exy$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_11$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_13$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_15$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_17$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_19$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_21$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_23$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_25$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_27$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_29$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_31$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_33$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_35$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_37$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_39$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_41$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_43$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_45$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_47$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_49$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_51$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_7$addsub0000> created at line 20.
+    Found 8-bit subtractor for signal <old_exy_9$addsub0000> created at line 20.
+    Found 25-bit adder for signal <old_mxy2_5$addsub0000> created at line 12.
+    Found 1-bit xor2 for signal <sr$xor0000> created at line 11.
+    Found 1-bit xor2 for signal <sr$xor0001> created at line 11.
+    Summary:
+	inferred  33 D-type flip-flop(s).
+	inferred  25 Adder/Subtractor(s).
+Unit <normalized> synthesized.
+
+
+Synthesizing Unit <fpadd>.
+    Related source file is "fpadd.v".
+WARNING:Xst:646 - Signal <mxy<23>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <ey1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <fpadd> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 30
+ 24-bit adder carry out                                : 1
+ 25-bit adder                                          : 1
+ 8-bit adder                                           : 2
+ 8-bit subtractor                                      : 26
+# Registers                                            : 29
+ 1-bit register                                        : 15
+ 24-bit register                                       : 6
+ 25-bit register                                       : 2
+ 8-bit register                                        : 6
+# Comparators                                          : 2
+ 8-bit comparator equal                                : 1
+ 8-bit comparator greater                              : 1
+# Logic shifters                                       : 2
+ 24-bit shifter logical right                          : 2
+# Xors                                                 : 3
+ 1-bit xor2                                            : 3
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+INFO:Xst:2261 - The FF/Latch <ex2_8> in Unit <add> is equivalent to the following 15 FFs/Latches, which will be removed : <ex2_9> <ex2_10> <ex2_11> <ex2_12> <ex2_13> <ex2_14> <ex2_15> <ex2_16> <ex2_17> <ex2_18> <ex2_19> <ex2_20> <ex2_21> <ex2_22> <ex2_23> 
+WARNING:Xst:1710 - FF/Latch <mx_23> (without init value) has a constant value of 1 in block <cmp1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <mx1_23> (without init value) has a constant value of 1 in block <buff1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <ex2_8> of sequential type is unconnected in block <add>.
+WARNING:Xst:2677 - Node <mxy_23> of sequential type is unconnected in block <norm>.
+WARNING:Xst:2404 -  FFs/Latches <ex2<23:8>> (without init value) have a constant value of 0 in block <faddsub>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 30
+ 24-bit adder carry out                                : 1
+ 25-bit adder                                          : 1
+ 8-bit adder                                           : 2
+ 8-bit subtractor                                      : 26
+# Registers                                            : 241
+ Flip-Flops                                            : 241
+# Comparators                                          : 2
+ 8-bit comparator equal                                : 1
+ 8-bit comparator greater                              : 1
+# Logic shifters                                       : 2
+ 24-bit shifter logical right                          : 2
+# Xors                                                 : 3
+ 1-bit xor2                                            : 3
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <mx_23> (without init value) has a constant value of 1 in block <cmpshift>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <fpadd> ...
+
+Optimizing unit <cmpshift> ...
+
+Optimizing unit <buffer1> ...
+
+Optimizing unit <faddsub> ...
+
+Optimizing unit <buffer2> ...
+
+Optimizing unit <normalized> ...
+WARNING:Xst:1710 - FF/Latch <buff1/mx1_23> (without init value) has a constant value of 1 in block <fpadd>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <cmp1/ey_7> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <cmp1/ey_6> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <cmp1/ey_5> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <cmp1/ey_4> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <cmp1/ey_3> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <cmp1/ey_2> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <cmp1/ey_1> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <cmp1/ey_0> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_7> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_6> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_5> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_4> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_3> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_2> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_1> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <buff1/ey1_0> of sequential type is unconnected in block <fpadd>.
+WARNING:Xst:2677 - Node <norm/mxy_23> of sequential type is unconnected in block <fpadd>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block fpadd, actual ratio is 18.
+FlipFlop buff2/mxy2_23 has been replicated 1 time(s)
+FlipFlop buff2/mxy2_24 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+Processing Unit <fpadd> :
+	Found 2-bit shift register for signal <buff1/sn2>.
+	Found 2-bit shift register for signal <buff1/sn1>.
+	Found 2-bit shift register for signal <buff2/mxy2_22>.
+	Found 2-bit shift register for signal <buff2/mxy2_21>.
+	Found 2-bit shift register for signal <buff2/mxy2_20>.
+	Found 2-bit shift register for signal <buff2/mxy2_19>.
+	Found 2-bit shift register for signal <buff2/mxy2_18>.
+	Found 2-bit shift register for signal <buff2/mxy2_17>.
+	Found 2-bit shift register for signal <buff2/mxy2_16>.
+	Found 2-bit shift register for signal <buff2/mxy2_15>.
+	Found 2-bit shift register for signal <buff2/mxy2_14>.
+	Found 2-bit shift register for signal <buff2/mxy2_13>.
+	Found 2-bit shift register for signal <buff2/mxy2_12>.
+	Found 2-bit shift register for signal <buff2/mxy2_11>.
+	Found 2-bit shift register for signal <buff2/mxy2_10>.
+	Found 2-bit shift register for signal <buff2/mxy2_9>.
+	Found 2-bit shift register for signal <buff2/mxy2_8>.
+	Found 2-bit shift register for signal <buff2/mxy2_7>.
+	Found 2-bit shift register for signal <buff2/mxy2_6>.
+	Found 2-bit shift register for signal <buff2/mxy2_5>.
+	Found 2-bit shift register for signal <buff2/mxy2_4>.
+	Found 2-bit shift register for signal <buff2/mxy2_3>.
+	Found 2-bit shift register for signal <buff2/mxy2_2>.
+	Found 2-bit shift register for signal <buff2/mxy2_1>.
+	Found 2-bit shift register for signal <buff2/mxy2_0>.
+	Found 3-bit shift register for signal <buff2/ex3_7>.
+	Found 4-bit shift register for signal <buff2/ex3_6>.
+	Found 3-bit shift register for signal <buff2/ex3_5>.
+	Found 4-bit shift register for signal <buff2/ex3_4>.
+	Found 4-bit shift register for signal <buff2/ex3_3>.
+	Found 3-bit shift register for signal <buff2/ex3_2>.
+	Found 4-bit shift register for signal <buff2/ex3_1>.
+	Found 3-bit shift register for signal <buff2/ex3_0>.
+	Found 2-bit shift register for signal <buff2/sn5>.
+	Found 3-bit shift register for signal <buff2/sr2>.
+	Found 2-bit shift register for signal <buff2/sn6>.
+Unit <fpadd> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 139
+ Flip-Flops                                            : 139
+# Shift Registers                                      : 36
+ 2-bit shift register                                  : 27
+ 3-bit shift register                                  : 5
+ 4-bit shift register                                  : 4
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : fpadd.ngr
+Top Level Output File Name         : fpadd
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 97
+
+Cell Usage :
+# BELS                             : 2024
+#      GND                         : 1
+#      INV                         : 25
+#      LUT1                        : 1
+#      LUT2                        : 111
+#      LUT2_D                      : 20
+#      LUT2_L                      : 15
+#      LUT3                        : 277
+#      LUT3_D                      : 32
+#      LUT3_L                      : 43
+#      LUT4                        : 890
+#      LUT4_D                      : 164
+#      LUT4_L                      : 163
+#      MUXCY                       : 70
+#      MUXF5                       : 147
+#      VCC                         : 1
+#      XORCY                       : 64
+# FlipFlops/Latches                : 175
+#      FD                          : 136
+#      FDS                         : 39
+# Shift Registers                  : 36
+#      SRL16                       : 36
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 96
+#      IBUF                        : 64
+#      OBUF                        : 32
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500efg320-5 
+
+ Number of Slices:                      935  out of   4656    20%  
+ Number of Slice Flip Flops:            175  out of   9312     1%  
+ Number of 4 input LUTs:               1777  out of   9312    19%  
+    Number used as logic:              1741
+    Number used as Shift registers:      36
+ Number of IOs:                          97
+ Number of bonded IOBs:                  97  out of    232    41%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 211   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 27.421ns (Maximum Frequency: 36.468MHz)
+   Minimum input arrival time before clock: 10.636ns
+   Maximum output required time after clock: 4.040ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 27.421ns (frequency: 36.468MHz)
+  Total number of paths / destination ports: 6189555097 / 164
+-------------------------------------------------------------------------
+Delay:               27.421ns (Levels of Logic = 44)
+  Source:            buff2/mxy2_1 (FF)
+  Destination:       norm/exy_5 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: buff2/mxy2_1 to norm/exy_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               6   0.514   0.569  buff2/mxy2_1 (buff2/mxy2_1)
+     INV:I->O              1   0.612   0.000  norm/Madd_old_mxy2_5_not0000<1>1_INV_0 (norm/Madd_old_mxy2_5_not0000<1>)
+     MUXCY:S->O            1   0.404   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<1> (norm/Madd_old_mxy2_5_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<2> (norm/Madd_old_mxy2_5_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<3> (norm/Madd_old_mxy2_5_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<4> (norm/Madd_old_mxy2_5_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<5> (norm/Madd_old_mxy2_5_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<6> (norm/Madd_old_mxy2_5_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<7> (norm/Madd_old_mxy2_5_addsub0000_cy<7>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<8> (norm/Madd_old_mxy2_5_addsub0000_cy<8>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<9> (norm/Madd_old_mxy2_5_addsub0000_cy<9>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<10> (norm/Madd_old_mxy2_5_addsub0000_cy<10>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<11> (norm/Madd_old_mxy2_5_addsub0000_cy<11>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<12> (norm/Madd_old_mxy2_5_addsub0000_cy<12>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<13> (norm/Madd_old_mxy2_5_addsub0000_cy<13>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<14> (norm/Madd_old_mxy2_5_addsub0000_cy<14>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<15> (norm/Madd_old_mxy2_5_addsub0000_cy<15>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<16> (norm/Madd_old_mxy2_5_addsub0000_cy<16>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<17> (norm/Madd_old_mxy2_5_addsub0000_cy<17>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<18> (norm/Madd_old_mxy2_5_addsub0000_cy<18>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<19> (norm/Madd_old_mxy2_5_addsub0000_cy<19>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<20> (norm/Madd_old_mxy2_5_addsub0000_cy<20>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<21> (norm/Madd_old_mxy2_5_addsub0000_cy<21>)
+     MUXCY:CI->O           1   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<22> (norm/Madd_old_mxy2_5_addsub0000_cy<22>)
+     MUXCY:CI->O           0   0.052   0.000  norm/Madd_old_mxy2_5_addsub0000_cy<23> (norm/Madd_old_mxy2_5_addsub0000_cy<23>)
+     XORCY:CI->O          57   0.699   1.083  norm/Madd_old_mxy2_5_addsub0000_xor<24> (norm/old_mxy2_5_addsub0000<24>)
+     LUT4:I3->O            1   0.612   0.000  norm/_old_mxy_8<22>34_G (N1583)
+     MUXF5:I1->O          61   0.278   1.233  norm/_old_mxy_8<22>34 (norm/_old_mxy_8<22>)
+     LUT3_D:I0->LO         1   0.612   0.103  norm/_old_mxy_16<21>1_SW0 (N2041)
+     LUT4:I3->O            7   0.612   0.632  norm/_old_mxy_16<21>1 (norm/_old_mxy_16<21>1)
+     LUT4:I2->O           58   0.612   1.083  norm/_old_mxy_16<21>39 (norm/_old_mxy_16<21>)
+     LUT4_D:I3->LO         1   0.612   0.103  norm/_old_mxy_26<21>111 (N2021)
+     LUT4:I3->O           11   0.612   0.796  norm/_old_mxy_26<21>119 (norm/_old_mxy_26<21>119)
+     LUT4:I3->O           60   0.612   1.110  norm/_old_mxy_24<21>1 (norm/_old_mxy_24<21>)
+     LUT4:I2->O            1   0.612   0.360  norm/_old_mxy_36<22>43_SW0_SW1 (N881)
+     LUT4_D:I3->LO         1   0.612   0.103  norm/_old_mxy_36<22>43 (N2052)
+     LUT4:I3->O           77   0.612   1.088  norm/_old_mxy_36<22>76 (norm/_old_mxy_36<22>)
+     LUT4:I3->O            3   0.612   0.454  norm/_old_mxy_40<21>_SW2 (N331)
+     LUT4:I3->O            7   0.612   0.605  norm/_old_mxy_40<21>_1 (norm/_old_mxy_40<21>1)
+     LUT4:I3->O            4   0.612   0.502  norm/_old_exy_47<6>2 (norm/N106)
+     LUT4:I3->O            1   0.612   0.387  norm/_old_exy_49<4>211_SW0_SW0 (N1323)
+     LUT4:I2->O            5   0.612   0.541  norm/_old_exy_49<4>211 (norm/N250)
+     LUT4:I3->O            4   0.612   0.502  norm/_old_exy_49<4> (norm/_old_exy_49<4>)
+     LUT4_D:I3->O          1   0.612   0.360  norm/exy_mux0000<7>3_SW0 (N267)
+     LUT4:I3->O            1   0.612   0.357  norm/exy_mux0000<7>3 (norm/N500)
+     FDS:S                     0.795          norm/exy_5
+    ----------------------------------------
+    Total                     27.421ns (15.451ns logic, 11.970ns route)
+                                       (56.3% logic, 43.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 13605 / 85
+-------------------------------------------------------------------------
+Offset:              10.636ns (Levels of Logic = 17)
+  Source:            a<23> (PAD)
+  Destination:       cmp1/my_11 (FF)
+  Destination Clock: clk rising
+
+  Data Path: a<23> to cmp1/my_11
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   1.106   0.819  a_23_IBUF (a_23_IBUF)
+     LUT2:I1->O            1   0.612   0.000  cmp1/Mcompar_ex_cmp_gt0000_lut<0> (cmp1/Mcompar_ex_cmp_gt0000_lut<0>)
+     MUXCY:S->O            1   0.404   0.000  cmp1/Mcompar_ex_cmp_gt0000_cy<0> (cmp1/Mcompar_ex_cmp_gt0000_cy<0>)
+     MUXCY:CI->O           1   0.051   0.000  cmp1/Mcompar_ex_cmp_gt0000_cy<1> (cmp1/Mcompar_ex_cmp_gt0000_cy<1>)
+     MUXCY:CI->O           1   0.051   0.000  cmp1/Mcompar_ex_cmp_gt0000_cy<2> (cmp1/Mcompar_ex_cmp_gt0000_cy<2>)
+     MUXCY:CI->O           1   0.051   0.000  cmp1/Mcompar_ex_cmp_gt0000_cy<3> (cmp1/Mcompar_ex_cmp_gt0000_cy<3>)
+     MUXCY:CI->O           1   0.051   0.000  cmp1/Mcompar_ex_cmp_gt0000_cy<4> (cmp1/Mcompar_ex_cmp_gt0000_cy<4>)
+     MUXCY:CI->O           1   0.051   0.000  cmp1/Mcompar_ex_cmp_gt0000_cy<5> (cmp1/Mcompar_ex_cmp_gt0000_cy<5>)
+     MUXCY:CI->O           1   0.051   0.000  cmp1/Mcompar_ex_cmp_gt0000_cy<6> (cmp1/Mcompar_ex_cmp_gt0000_cy<6>)
+     MUXCY:CI->O          34   0.399   1.225  cmp1/Mcompar_ex_cmp_gt0000_cy<7> (cmp1/Mcompar_ex_cmp_gt0000_cy<7>)
+     LUT4:I0->O            1   0.612   0.000  cmp1/my_mux0000<0>11 (cmp1/my_mux0000<0>1)
+     MUXF5:I0->O          19   0.278   1.074  cmp1/my_mux0000<0>1_f5 (cmp1/N2)
+     LUT2:I0->O            9   0.612   0.727  cmp1/my_mux0000<15>80 (cmp1/my_mux0000<10>43)
+     LUT4:I2->O            1   0.612   0.000  cmp1/my_mux0000<9>48_F (N1828)
+     MUXF5:I0->O           2   0.278   0.410  cmp1/my_mux0000<9>48 (cmp1/my_mux0000<9>48)
+     LUT4:I2->O            1   0.612   0.000  cmp1/my_mux0000<9>13311 (cmp1/my_mux0000<9>1331)
+     MUXF5:I0->O           1   0.278   0.000  cmp1/my_mux0000<9>1331_f5 (cmp1/my_mux0000<9>133)
+     FDS:D                     0.268          cmp1/my_9
+    ----------------------------------------
+    Total                     10.636ns (6.381ns logic, 4.255ns route)
+                                       (60.0% logic, 40.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 32 / 32
+-------------------------------------------------------------------------
+Offset:              4.040ns (Levels of Logic = 1)
+  Source:            norm/sr (FF)
+  Destination:       out<31> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: norm/sr to out<31>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               1   0.514   0.357  norm/sr (norm/sr)
+     OBUF:I->O                 3.169          out_31_OBUF (out<31>)
+    ----------------------------------------
+    Total                      4.040ns (3.683ns logic, 0.357ns route)
+                                       (91.2% logic, 8.8% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 75.00 secs
+Total CPU time to Xst completion: 75.15 secs
+ 
+--> 
+
+Total memory usage is 301324 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   29 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
+

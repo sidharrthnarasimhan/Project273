@@ -1,0 +1,8 @@
+verilog work "normalized.v"
+verilog work "faddsub.v"
+verilog work "cmpshift.v"
+verilog work "buffer2.v"
+verilog work "buffer1.v"
+verilog work "fpadd.v"
+verilog work "addertb.v"
+verilog work "C:/Xilinx/14.4/ISE_DS/ISE//verilog/src/glbl.v"

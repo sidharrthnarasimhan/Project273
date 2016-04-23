@@ -1,0 +1,29 @@
+Command line:
+   addertb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  56502
+
+Fri Apr 22 17:56:01 2016
+
+
+ Elaboration Time: 0.0312 sec
+
+ Current Memory Usage: 506.089 Meg
+
+ Total Signals          : 89
+ Total Nets             : 433
+ Total Signal Drivers   : 46
+ Total Blocks           : 8
+ Total Primitive Blocks : 6
+ Total Processes        : 54
+ Total Traceable Variables  : 52
+ Total Scalar Nets and Variables : 868
+Total Line Count : 100
+
+ Total Simulation Time: 0.0312 sec
+
+ Current Memory Usage: 506.089 Meg
+
+Fri Apr 22 17:58:11 2016
+
